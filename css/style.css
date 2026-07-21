@@ -649,6 +649,18 @@ button {
   gap: 0.5rem;
 }
 
+.text-accent {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.interest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
 .skill-badge {
   display: inline-block;
   padding: 0.3rem 0.75rem;
