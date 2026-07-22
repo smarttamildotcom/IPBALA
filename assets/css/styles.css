@@ -308,6 +308,42 @@ h1 {
   margin-bottom: 28px;
 }
 
+.page-experience .experience-intro {
+  max-width: 960px;
+  margin: 0 auto 56px;
+}
+
+.page-experience .experience-intro .section-title {
+  margin-bottom: 24px;
+}
+
+.page-experience .experience-intro .section-intro {
+  max-width: none;
+  margin-bottom: 22px;
+}
+
+.page-experience .experience-intro .section-intro:last-child {
+  margin-bottom: 0;
+}
+
+.page-events .events-intro {
+  max-width: 960px;
+  margin: 0 auto 60px;
+}
+
+.page-events .events-intro .section-title {
+  margin-bottom: 24px;
+}
+
+.page-events .events-intro .section-intro {
+  max-width: none;
+  margin-bottom: 22px;
+}
+
+.page-events .events-intro .section-intro:last-child {
+  margin-bottom: 0;
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -354,6 +390,15 @@ h1 {
 
 .about-flow > .card p {
   max-width: 70ch;
+}
+
+.about-flow > .learning-approach-card p,
+.about-flow > .website-purpose p {
+  max-width: none;
+}
+
+.about-flow > .professional-journey-card p {
+  max-width: none;
 }
 
 .section-heading {
@@ -584,6 +629,30 @@ h1 {
   margin: 12px 0 0;
   color: var(--accent);
   font-weight: 600;
+}
+
+.website-purpose {
+  grid-column: 1 / -1;
+  margin: 10px 0 12px;
+  padding: 34px 36px;
+}
+
+.website-purpose-copy {
+  max-width: 100%;
+  text-align: left;
+}
+
+.website-purpose-copy p {
+  margin: 0 0 14px;
+}
+
+.website-purpose-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.website-purpose.reveal {
+  transform: translate3d(0, 20px, 0);
+  transition-duration: 720ms;
 }
 
 .events-flow {
@@ -947,6 +1016,37 @@ h1 {
   font-size: 0.9rem;
 }
 
+.contact-page-disclaimer {
+  grid-column: 1 / -1;
+  margin-top: 36px;
+}
+
+.contact-page-disclaimer h2,
+.contact-page-disclaimer p {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  font-size: 0.5625rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--text-soft) 90%, transparent);
+  text-align: left;
+}
+
+.contact-page-disclaimer h2 {
+  margin: 0 0 8px;
+}
+
+.contact-page-disclaimer p {
+  margin: 0 0 10px;
+}
+
+.contact-page-disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
+.page-contact .footer {
+  margin-top: 36px;
+}
+
 .footer-reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -956,14 +1056,6 @@ h1 {
 .footer-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-.disclaimer {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-top: 14px;
 }
 
 .reveal {
@@ -1090,6 +1182,10 @@ h1 {
     grid-template-columns: 1fr 1fr;
   }
 
+  .website-purpose {
+    padding: 30px 30px;
+  }
+
   .values-dashboard,
   .learning-dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1150,6 +1246,11 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .website-purpose {
+    margin: 8px 0;
+    padding: 24px 20px;
+  }
+
   .values-dashboard,
   .learning-dashboard {
     grid-template-columns: 1fr;
@@ -1184,4 +1285,5 @@ h1 {
     opacity: 1 !important;
     transform: none !important;
   }
+
 }
