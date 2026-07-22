@@ -5,6 +5,9 @@
   const navMenu = document.querySelector('[data-nav-menu]');
   const contactForm = document.querySelector('[data-contact-form]');
   const formStatus = document.querySelector('[data-form-status]');
+  const filterButtons = document.querySelectorAll('[data-filter]');
+  const articleCards = document.querySelectorAll('[data-article-grid] .article-card');
+  const articleEmptyState = document.querySelector('[data-article-empty]');
 
   function setTheme(theme) {
     root.setAttribute('data-theme', theme);
@@ -88,6 +91,32 @@
       } catch (error) {
         formStatus.textContent = 'Clipboard access was blocked. Copy the message manually from your browser.';
       }
+    });
+  }
+
+  if (filterButtons.length && articleCards.length) {
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const selectedFilter = button.getAttribute('data-filter') || 'all';
+        let visibleCount = 0;
+
+        filterButtons.forEach(function (chip) {
+          chip.classList.toggle('active', chip === button);
+        });
+
+        articleCards.forEach(function (card) {
+          const categories = (card.getAttribute('data-category') || '').toLowerCase();
+          const isMatch = selectedFilter === 'all' || categories.indexOf(selectedFilter) !== -1;
+          card.classList.toggle('is-hidden', !isMatch);
+          if (isMatch) {
+            visibleCount += 1;
+          }
+        });
+
+        if (articleEmptyState) {
+          articleEmptyState.hidden = visibleCount !== 0;
+        }
+      });
     });
   }
 })();
