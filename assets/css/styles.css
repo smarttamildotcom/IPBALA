@@ -535,6 +535,67 @@ h1 {
     0 18px 36px rgba(8, 30, 52, 0.2);
 }
 
+.useful-links-section {
+  margin-bottom: 34px;
+}
+
+.useful-links-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.useful-links-section .section-heading {
+  margin-bottom: 12px;
+}
+
+.useful-link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.useful-link-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.useful-link-header h3 {
+  margin: 0;
+  line-height: 1.3;
+}
+
+.external-link-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  display: inline-grid;
+  place-items: center;
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: transform 200ms var(--motion-ease), border-color 200ms ease, background 200ms ease;
+}
+
+.external-link-icon:hover,
+.external-link-icon:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--surface-alt) 45%, transparent);
+}
+
+.useful-link-card p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.94rem;
+}
+
+.useful-link-card .pill-link {
+  margin-top: auto;
+  width: fit-content;
+}
+
 .value-glass::before,
 .learning-card::before {
   content: "";
@@ -729,6 +790,37 @@ h1 {
 
 .featured-articles {
   margin: 14px 0 26px;
+}
+
+.articles-coming-soon-wrap {
+  max-width: 920px;
+  margin: 12px auto 0;
+}
+
+.coming-soon-card {
+  padding: 30px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coming-soon-card .section-heading {
+  margin: 0 0 2px;
+}
+
+.coming-soon-card p {
+  margin: 0;
+}
+
+.coming-soon-list {
+  margin: 0;
+  padding: 0;
+}
+
+.coming-soon-note {
+  max-width: 920px;
+  margin: 22px auto 0;
+  text-align: center;
 }
 
 .article-card {
@@ -1248,6 +1340,10 @@ h1 {
 
   .website-purpose {
     margin: 8px 0;
+    padding: 24px 20px;
+  }
+
+  .coming-soon-card {
     padding: 24px 20px;
   }
 
