@@ -6,8 +6,6 @@
   const themeToggle = document.querySelector('[data-theme-toggle]');
   const navToggle = document.querySelector('[data-nav-toggle]');
   const navMenu = document.querySelector('[data-nav-menu]');
-  const contactForm = document.querySelector('[data-contact-form]');
-  const formStatus = document.querySelector('[data-form-status]');
   const filterButtons = document.querySelectorAll('[data-filter]');
   const articleCards = document.querySelectorAll('[data-article-grid] .article-card');
   const articleEmptyState = document.querySelector('[data-article-empty]');
@@ -236,37 +234,6 @@
     } else {
       footer.classList.add('is-visible');
     }
-  }
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      const name = document.getElementById('name');
-      const email = document.getElementById('email');
-      const subject = document.getElementById('subject');
-      const message = document.getElementById('message');
-
-      const compiledMessage = [
-        'Subject: ' + (subject ? subject.value.trim() || 'Website Contact' : 'Website Contact'),
-        '',
-        'Name: ' + (name ? name.value.trim() : ''),
-        'Email: ' + (email ? email.value.trim() : ''),
-        '',
-        'Message:',
-        message ? message.value.trim() : ''
-      ].join('\n');
-
-      if (!formStatus) {
-        return;
-      }
-
-      try {
-        await navigator.clipboard.writeText(compiledMessage);
-        formStatus.textContent = 'Message copied to clipboard.';
-      } catch (error) {
-        formStatus.textContent = 'Clipboard access was blocked. Copy the message manually from your browser.';
-      }
-    });
   }
 
   if (filterButtons.length && articleCards.length) {
