@@ -756,6 +756,37 @@ h1 {
   gap: 22px;
 }
 
+.featured-recognition {
+  margin: 0 0 22px;
+}
+
+.featured-recognition .section-heading {
+  margin-bottom: 14px;
+}
+
+.recognition-card {
+  transition:
+    transform 250ms var(--motion-ease),
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    opacity var(--motion-slow) var(--motion-ease);
+}
+
+.recognition-card:hover,
+.recognition-card:focus-within {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 34px rgba(8, 30, 52, 0.18);
+}
+
+.recognition-card h3 {
+  margin: 0 0 8px;
+}
+
+.recognition-card p:last-child {
+  margin-bottom: 0;
+}
+
 .membership-card {
   position: relative;
   overflow: hidden;
@@ -1374,6 +1405,15 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .page-events .events-intro,
+  .page-events .featured-recognition {
+    margin-bottom: 28px;
+  }
+
+  .page-events .events-timeline .timeline-item {
+    margin-bottom: 28px;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1447,6 +1487,41 @@ h1 {
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-events .events-intro {
+    margin-bottom: 26px;
+  }
+
+  .page-events .featured-recognition {
+    margin-bottom: 20px;
+  }
+
+  .page-events .featured-recognition .section-heading {
+    margin-bottom: 12px;
+  }
+
+  .page-events .recognition-card,
+  .page-events .event-card,
+  .page-events .membership-card {
+    padding: 20px;
+  }
+
+  .page-events .timeline {
+    margin-left: 0;
+    padding-left: 18px;
+  }
+
+  .page-events .timeline-item::before {
+    left: -24px;
+  }
+
+  .page-events .year-title {
+    margin-bottom: 10px;
+  }
+
+  .page-events .events-timeline .timeline-item {
+    margin-bottom: 24px;
   }
 }
 
