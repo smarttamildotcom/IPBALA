@@ -1417,6 +1417,33 @@ h1 {
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .page-experience .experience-intro {
+    margin-bottom: 48px;
+  }
+
+  .page-experience .timeline {
+    margin-left: 4px;
+    padding-left: 20px;
+  }
+
+  .page-experience .timeline-item::before {
+    left: -26px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .page-experience .container {
+    width: min(1040px, 94vw);
+  }
+
+  .page-experience .timeline-item {
+    margin-bottom: 26px;
+  }
+
+  .page-experience .card {
+    padding: 22px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1522,6 +1549,115 @@ h1 {
 
   .page-events .events-timeline .timeline-item {
     margin-bottom: 24px;
+  }
+
+  .page-experience {
+    overflow-x: clip;
+  }
+
+  .page-experience .section {
+    padding: 48px 0;
+  }
+
+  .page-experience .container {
+    width: min(100%, 95vw);
+  }
+
+  .page-experience .experience-intro {
+    margin: 0 auto 32px;
+  }
+
+  .page-experience .experience-intro .section-title {
+    font-size: clamp(2.25rem, 9vw, 2.6rem);
+    line-height: 1.12;
+    margin-bottom: 16px;
+  }
+
+  .page-experience .experience-intro .section-intro {
+    margin-bottom: 16px;
+    font-size: 1rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+  }
+
+  .page-experience .timeline {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 20px;
+  }
+
+  .page-experience .timeline::before {
+    left: -2px;
+  }
+
+  .page-experience .timeline-item {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow-wrap: anywhere;
+  }
+
+  .page-experience .timeline-item::before {
+    left: -28px;
+    top: 24px;
+  }
+
+  .page-experience .timeline-item h3 {
+    font-size: clamp(1.5rem, 6.2vw, 1.75rem);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .page-experience .meta,
+  .page-experience .timeline-item p,
+  .page-experience .timeline-item li,
+  .page-experience .card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+
+  .page-experience .list-clean li {
+    padding: 10px 0;
+  }
+
+  .page-experience .section-divider {
+    height: 0;
+    margin: 0;
+    background: transparent;
+  }
+
+  .page-experience .card {
+    width: 100%;
+    margin: 0 auto 32px;
+    padding: 24px;
+  }
+
+  .page-experience .card:last-child {
+    margin-bottom: 0;
+  }
+
+  .page-experience .section-heading {
+    font-size: clamp(1.5rem, 6.5vw, 1.75rem);
+    line-height: 1.25;
+  }
+
+  .page-experience .timeline-item:hover,
+  .page-experience .timeline-item:focus-within {
+    transform: none;
+    border-color: var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  .page-experience .nav-toggle,
+  .page-experience .theme-toggle {
+    min-height: 44px;
   }
 }
 
