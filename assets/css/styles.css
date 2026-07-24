@@ -1269,6 +1269,16 @@ h1 {
   transition-duration: 800ms;
 }
 
+/* Keep the Professional Journey page readable even when JS reveal sequencing fails on some mobile browsers. */
+.page-experience .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.page-experience .timeline::before {
+  transform: scaleY(1);
+}
+
 .page-events .reveal,
 .page-articles .reveal,
 .page-resources .reveal {
@@ -1446,7 +1456,14 @@ h1 {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .header-inner {
     align-items: flex-start;
     flex-direction: column;
@@ -1552,7 +1569,23 @@ h1 {
   }
 
   .page-experience {
-    overflow-x: clip;
+    overflow-x: hidden;
+  }
+
+  .page-experience::before {
+    display: none;
+  }
+
+  .page-experience .reveal,
+  .page-experience .footer-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .page-experience .timeline,
+  .page-experience .timeline-item,
+  .page-experience .card {
+    min-width: 0;
   }
 
   .page-experience .section {
@@ -1589,6 +1622,7 @@ h1 {
 
   .page-experience .timeline::before {
     left: -2px;
+    transform: scaleY(1);
   }
 
   .page-experience .timeline-item {
@@ -1606,6 +1640,7 @@ h1 {
   .page-experience .timeline-item::before {
     left: -28px;
     top: 24px;
+    transform: scale(1);
   }
 
   .page-experience .timeline-item h3 {

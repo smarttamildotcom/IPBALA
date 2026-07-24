@@ -11,6 +11,76 @@
   const articleEmptyState = document.querySelector('[data-article-empty]');
   const navLinks = document.querySelectorAll('[data-nav-menu] a[href]');
   const pageName = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const queryParams = new URLSearchParams(window.location.search || '');
+  const debugMobile = queryParams.get('debugMobile') === '1';
+  const isExperiencePage = pageName.indexOf('experience') !== -1;
+
+  function installMobileDebugProbe() {
+    if (!debugMobile || !isExperiencePage) {
+      return;
+    }
+
+    const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+    if (!isMobileViewport) {
+      console.info('[IPBALA mobile-debug] Skipped: viewport is wider than 767px.');
+      return;
+    }
+
+    function reportLayoutState() {
+      const doc = document.documentElement;
+      const bodyEl = document.body;
+      const container = document.querySelector('main .container');
+      const timeline = document.querySelector('.timeline');
+      const firstCard = document.querySelector('.timeline .timeline-item');
+
+      const summary = {
+        viewportWidth: window.innerWidth,
+        documentClientWidth: doc ? doc.clientWidth : null,
+        bodyScrollWidth: bodyEl ? bodyEl.scrollWidth : null,
+        hasHorizontalOverflow: bodyEl ? bodyEl.scrollWidth > doc.clientWidth : null,
+        bodyClasses: bodyEl ? bodyEl.className : '',
+        containerWidth: container ? Math.round(container.getBoundingClientRect().width) : null,
+        timelineWidth: timeline ? Math.round(timeline.getBoundingClientRect().width) : null,
+        timelineVisible: timeline ? window.getComputedStyle(timeline).display !== 'none' : false,
+        timelineOpacity: timeline ? window.getComputedStyle(timeline).opacity : null,
+        timelineTransform: timeline ? window.getComputedStyle(timeline).transform : null,
+        firstCardVisible: firstCard ? window.getComputedStyle(firstCard).display !== 'none' : false,
+        firstCardOpacity: firstCard ? window.getComputedStyle(firstCard).opacity : null,
+        firstCardTransform: firstCard ? window.getComputedStyle(firstCard).transform : null
+      };
+
+      console.info('[IPBALA mobile-debug] Layout summary', summary);
+    }
+
+    window.addEventListener('error', function (event) {
+      const err = event.error;
+      console.error('[IPBALA mobile-debug] Runtime error', {
+        message: event.message,
+        source: event.filename,
+        line: event.lineno,
+        column: event.colno,
+        stack: err && err.stack ? err.stack : null
+      });
+    });
+
+    window.addEventListener('unhandledrejection', function (event) {
+      console.error('[IPBALA mobile-debug] Unhandled rejection', {
+        reason: event.reason
+      });
+    });
+
+    window.addEventListener('load', function () {
+      reportLayoutState();
+      window.setTimeout(reportLayoutState, 250);
+      window.setTimeout(reportLayoutState, 1000);
+    });
+
+    window.addEventListener('resize', function () {
+      reportLayoutState();
+    });
+  }
+
+  installMobileDebugProbe();
 
   if (body) {
     body.classList.add('is-page-entering');
@@ -92,16 +162,32 @@
 
   initializeLoader();
 
+  function safeStorageGet(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function safeStorageSet(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch (error) {
+      // Ignore storage failures so page scripts continue to run.
+    }
+  }
+
   function setTheme(theme) {
     root.setAttribute('data-theme', theme);
-    localStorage.setItem('ipbala-theme', theme);
+    safeStorageSet('ipbala-theme', theme);
     if (themeToggle) {
       themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
       themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     }
   }
 
-  const savedTheme = localStorage.getItem('ipbala-theme');
+  const savedTheme = safeStorageGet('ipbala-theme');
   if (savedTheme === 'dark' || savedTheme === 'light') {
     setTheme(savedTheme);
   } else {
